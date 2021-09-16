@@ -45,8 +45,7 @@ function sum(dailyWage){
     totalEmpWage +=dailyWage;
 }
 empDailyWageArr.forEach(sum);
-console.log(" UC-7A For Each : Total Working Days:- " + workingDays +  
-            " Total Hours:-  "+ empHrs + "  EMP WAGE :-  "+totalEmpWage);
+console.log(" UC-7A For Each : Total Working Days:- " + workingDays + " Total Hours:-  "+ empHrs + "  EMP WAGE :-  "+totalEmpWage);
 
 //Use of Reduce Function
 function totalWages(totalWage,dailyWage){
@@ -79,24 +78,21 @@ console.log("--------------------------------------------------");
 function findfulltimeWage(dailyWage){
     return dailyWage.includes("160");
 }
-console.log("UC-7D :First time FullTime Wage was Earned on: " +
-            mapDailyWageArr.find(findfulltimeWage) );
+console.log("UC-7D :First time FullTime Wage was Earned on: " + mapDailyWageArr.find(findfulltimeWage) );
             console.log("------------------------------------------");
 
 // UC-7E Check if Every Element of Full Time Wage Is Truely holding Full Time Wage            
 function isAllfulltimeWage(dailyWage){
     return dailyWage.includes("160");
 }
-console.log("UC-7E:Check All Element have FullTime Wage:"+
-            mapDailyWageArr.every(isAllfulltimeWage));
+console.log("UC-7E:Check All Element have FullTime Wage:"+ mapDailyWageArr.every(isAllfulltimeWage));
             console.log("--------------------------------");
 
 // UC-7F Check there is any Part Time Wage 
-function isAnyfulltimeWage(dailyWage){
+function isAnyParttimeWage(dailyWage){
     return dailyWage.includes("80");
 }
-console.log("UC-7F :Check If any have Part-Time Wage: "+
-            mapDailyWageArr.some(isAnyfulltimeWage));
+console.log("UC-7F :Check If any have Part-Time Wage: "+ mapDailyWageArr.some(isAnyParttimeWage));
             console.log("------------------------------");
             
 //UC-7G Find the number of Days the Employee Worked
@@ -105,6 +101,5 @@ function totalDaysWorked(numOfDays,dailyWage){
         return numOfDays+1;
         return numOfDays;
 }
-console.log("UC-7G Number of Days the Employee Worked: "+
-            empDailyWageArr.reduce(totalDaysWorked,0)); 
+console.log("UC-7G Number of Days the Employee Worked: "+ empDailyWageArr.reduce(totalDaysWorked,0)); 
             console.log("------------------------------");
