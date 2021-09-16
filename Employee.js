@@ -1,5 +1,5 @@
-//UC9 -Use daily Wage Map and daily Hrs Map for Op using Arrow Function
-// calc of daily wage & total hrs and full,part and no work days
+//UC10 -Objection Creation
+
 const IS_PART_TIME =1;
 const IS_FULL_TIME =2;
 const PART_TIME_HOURS =4;
@@ -11,7 +11,8 @@ let empHrs=0;
 let workingDays=0                         
 let empDailyWageArr = new Array();
 let empDailyWageMap = new Map();
-let empDailyHrsMap=new Map();//UC9
+let empDailyHrsMap=new Map();
+let empDailyHrsandwageArr =new Array();//UC10
 function getWorkingHours(empCheck){
     switch(empCheck){
         case IS_PART_TIME:
@@ -36,6 +37,16 @@ while(empHrs<=MAX_HOURS && workingDays <= WORKING_DAYS){
     empDailyWageMap.set(workingDays,CalcDailyWage(hours));//UC8
     empDailyHrsMap.set(workingDays, hours);
 }
+empDailyHrsandwageArr.push(
+    {
+        dayNum: workingDays,
+        dailyHours: empHrs,
+        dailyWage: CalcDailyWage(empHrs),
+        toString() {
+            return "\nDay: " + this.dayNum + "\nWorking Hours: " + this.dailyHours + "\nWage Earned: " + this.dailyWage;
+        }
+    }
+);
 
 console.log(empDailyWageMap);
 
@@ -79,4 +90,9 @@ console.log("------------------------------");
     console.log("Part time working days: " + partWorkingDays);
     console.log("Non working days: " + noWorkingDays);
     console.log("---------------------------------------");
+}
+// UC10 Store Day, Daily Hours And Daily Wage In An Object And Print
+{
+    console.log("UC10 : Display Employee Object Array Containing Day, Daily Hours And Daily Wage" +empDailyHrsandwageArr );
+    console.log("-------------------------------------------");
 }
