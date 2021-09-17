@@ -96,3 +96,37 @@ console.log("------------------------------");
     console.log("UC10 : Display Employee Object Array Containing Day, Daily Hours And Daily Wage" +empDailyHrsandwageArr );
     console.log("-------------------------------------------");
 }
+//UC11a - UC11d Using Object Functions Along With Arrow Functions
+{
+    console.log("UC11a - UC11d Using Object Functions Along With Arrow Functions")
+
+    // UC11a Calculate Total Wages And Hours Using Object Functions And Arrow Functions
+    console.log("\nUC11a : Calculate Total Wages And Hours Using Object Functions And Arrow Functions");
+    let totalWages = empDailyHrsandwageArr.filter(dailyHrsandWage => dailyHrsandWage.dailyWage > 0)
+                                 .reduce((totalWage, dailyHrsAndWage) => totalWage += dailyHrsAndWage.dailyWage, 0);
+    let totalHours = empDailyHrsandwageArr.filter(dailyHrsandWage => dailyHrsandWage.dailyHours > 0)
+                                 .reduce((totalHours, dailyHrsandWage) => totalHours += dailyHrsandWage.dailyHours, 0);
+    console.log("Total Wages: " + totalWages);
+    console.log("Total Hours: " + totalHours);
+    console.log("---------------------------");
+
+    // UC11b Show Full Working Days Using ForEach And Object Functions
+    console.log("\nUC11b : Show Full Working Days Using ForEach And Object Functions");
+    process.stdout.write("Full Working Days: ")
+    empDailyHrsandwageArr.filter(dailyHrsandWage => dailyHrsandWage.dailyHours == 8)
+                  .forEach(dailyHrsandWage => process.stdout.write(dailyHrsandWage.toString()));
+    
+    // UC11c Show Part Time Working Days Using Map And Object Functions
+    console.log("\nUC11c : Show Part Time Working Days Using Map And Object Functions");
+    process.stdout.write("Part Time Working Days: ");
+    let partWorkingDayStrarray = empDailyHrsandwageArr.filter(dailyHrsandWage => dailyHrsandWage.dailyHours == 4).map(dailyHrsandWage => dailyHrsandWage.toString());
+                  
+    console.log(partWorkingDayStrarray);
+              
+     // UC11d Show Non Working Days Using Map Function And Object Function
+    console.log("\nUC11d : Show Non Working Days Using Map Function And Object Function")
+    process.stdout.write("Non Working Days: ");
+    let nonWorkingDaysArray = empDailyHrsandwageArr.filter(dailyHrsandWage => dailyHrsandWage.dailyHours == 0)
+                                            .map(dailyHrsandWage => dailyHrsandWage.toString());
+    console.log(nonWorkingDaysArray);             
+}
