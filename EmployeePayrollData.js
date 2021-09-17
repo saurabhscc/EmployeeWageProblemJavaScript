@@ -1,7 +1,8 @@
 class EmployeePayrollData {
     // properties
-    id;
+    
     salary;
+    
 
     //constructor
     constructor(...params) {
@@ -12,16 +13,44 @@ class EmployeePayrollData {
         this.startDate = params[4]; 
     }
     //getter and setter method
+    get id() {
+        return this._id;
+    }
     get name() {
         return this._name;
     }
-
+    get gender() {
+        return this._gender;
+    }
+    get startDate() {
+        return this._startDate;
+    }
+    set id(id){
+        let idRegex = RegExp('^[1-9][0-9]*$');
+        if(idRegex.test(id)) this._id = id;
+        else throw "ID is incorrect";
+    }
     set name(name) {
         let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
         if(nameRegex.test(name))
             this._name = name;
         else
             throw "Name is incorrect!";
+    }
+    set salary(salary){
+        let salaryRegex = RegExp('^[1-9][0-9]*$');
+        if(salaryRegex.test(salary)) this._salary = salary;
+        else throw "ID is incorrect";
+    }
+    set gender(gender){
+        let genderRegex = RegExp("^[MF]$");
+        if(genderRegex.test(gender)) this._gender = gender;
+        else throw "Gender is incorrect";
+    }
+    set startDate(startDate){
+        let currentDate = new Date();
+        if(startDate <= currentDate) this._startDate = startDate;
+        else throw "Start Date is incorrect";
     }
     //method
     toString() {
@@ -32,13 +61,43 @@ class EmployeePayrollData {
             +  ", gender: " + this.gender + ", startDate: " + empDate;
     }
 }
-let employeePayrollData = new EmployeePayrollData(1, "Mark", 20000);
-console.log(employeePayrollData.toString());
-try {
-    employeePayrollData.name = "john";
-} catch(e) {
-    console.error(e);
-}
-console.log("------------------------------------------------------------------------");
+let employeePayrollData = new EmployeePayrollData(1, "Mark", 20000,"M",new Date());
+process.stdout.write(employeePayrollData.toString()+"\n");
 let employeePayrollData2 = new EmployeePayrollData(2, "Terrisa", 30000, "F", new Date());
-console.log(employeePayrollData2.toString()); 
+process.stdout.write(employeePayrollData2.toString()+"\n");
+
+// Name Validation
+try{
+    employeePayrollData.name="john";
+    process.stdout.write(employeePayrollData.toString()+"\n");
+}catch(exception){
+    console.error(exception);
+}
+
+// Id Validation: Should be greater than 0
+try{
+    employeePayrollData2.id = 0;
+}catch(exception){
+    console.error(exception);
+}
+
+// Salary Validation: Should be greater than 0
+try{
+    employeePayrollData2.salary = 0;
+}catch(exception){
+    console.error(exception);
+}
+// Gender Validation: Should be M or F
+try{
+    employeePayrollData2.gender = "Z";
+}catch(exception){
+    console.error(exception);
+}
+
+// Start Date Validation: Should not be future date
+try{
+    employeePayrollData2.startDate = new Date("2025-9-17");
+    process.stdout.write(employeePayrollData2.toString()+"\n");
+}catch(exception){
+    console.error(exception);
+} 
